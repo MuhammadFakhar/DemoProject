@@ -1,0 +1,16 @@
+<h1>Showing all Products</h1>
+<% @products.each do |product| %>
+  Name: <%=product.name%><br>
+  Price: <%=product.price%><br>
+  Quantity is <%=product.quantity %><br>
+  Description: <%=product.description%>
+  <%= link_to "show", product_path(product) %>
+  <% if user_signed_in? && current_user.id!=product.user_id %>
+    <%= form_tag (cart_path(id: product.id, name: product.name, price: product.price)) do%>
+      <%= label_tag :quantity %>
+      <%= number_field_tag('quantity',params[:quantity])%>
+      <%= submit_tag "Add to Cart" %>
+    <% end %>
+  <% end %>
+  <br><br><br><br>
+<% end %>

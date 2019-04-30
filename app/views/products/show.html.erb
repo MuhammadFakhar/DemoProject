@@ -1,0 +1,24 @@
+  <%= link_to "Home", root_path %><br>
+  <h1>Product</h1>
+  Name: <%= @product.name %><br>
+  <% @product.images.each do |image| %>
+    <div>
+      <%= image_tag(image) %>
+    </div>
+  <% end %>
+  <br>
+  Price: <%= @product.price %><br>
+  Quantity is <%= @product.quantity %><br>
+ Description: <%= @product.description %><br>
+
+  <% if user_signed_in? && @product.user_id!=current_user.id %>
+    <%= form_for [@product,@comment], remote:true do |f| %>
+        <%= f.text_field :description %>
+        <%= f.submit :"Comment" %>
+    <% end %>
+  <% end %>
+  <div id="comment_pane">
+      <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+      <%end%>
+  </div>

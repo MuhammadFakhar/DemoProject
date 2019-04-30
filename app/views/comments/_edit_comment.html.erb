@@ -1,0 +1,7 @@
+  <div>
+    <%= form_for [@product,@comment], remote: true do |f| %>
+     <%= f.text_field :description %>
+     <%= f.submit :"Update"%>
+     <%= link_to "Cancel", product_path(@product) %>
+    <% end %>
+  </div>

@@ -1,0 +1,7 @@
+ <div>
+  <%= form_tag (cart_path(id: @product.id, name: @product.name, price: @product.price)) do%>
+      <%= number_field_tag('quantity',params[:quantity])%>
+      <%= submit_tag "Update" %>
+      <%= link_to "Cancel", cart_path %>
+  <% end %>
+</div>

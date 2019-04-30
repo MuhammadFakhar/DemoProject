@@ -1,0 +1,8 @@
+<div id="comment-<%=comment.id %>">
+  <%= comment.description%><%=' ' %><%= comment.user.name %>: at
+  <%= comment.created_at.strftime("%I:%M %p") %>
+  <% if user_signed_in? && comment.user_id==current_user.id %>
+    <%= link_to "Edit", edit_product_comment_path(comment.product,comment), remote: true %>
+    <%= link_to "Delete", product_comment_path(comment.product,comment), method: :delete, remote: true %>
+  <% end %>
+</div>
